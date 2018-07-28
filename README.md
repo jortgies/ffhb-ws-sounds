@@ -22,5 +22,5 @@ Everyone opens the website, someone hits the button and everyone hears "Flash! A
 * The service is available on localhost:3001. Running in a screen/tmux is recommended as well as a reverse proxy.
 
 ### ToDo
-* More sounds! We need a B.A.T.M.A.N. sound etc.
+* More sounds! See "Issues".
 * UI
