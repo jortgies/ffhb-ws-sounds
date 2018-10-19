@@ -4,26 +4,6 @@
     <meta charset="UTF-8">
     <title>FFHB Flash Soundboard</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-        $(function() {
-            let socket = io();
-
-            let sound = $('#sound').get(0);
-            $('#play').on('click', function() {
-                socket.emit('message', 'play');
-                if(sound.paused)
-                    sound.play();
-            });
-
-            socket.on('play', function(msg) {
-                if(msg === 'play') {
-                    if(sound.paused)
-                        sound.play();
-                }
-            });
-        });
-    </script>
 </head>
 <body>
     <button id="play" style="width: 200px; height: 120px; font-size: 100px;">
@@ -34,5 +14,25 @@
         Your browser does not support the audio element.
     </audio>
     <br>Full Audio <a href="https://www.youtube.com/watch?v=LfmrHTdXgK4">here</a>.
+    <script>
+        (function() {
+            let socket = io();
+
+            let sound = document.getElementById('sound');
+            let play = document.getElementById('play');
+            play.onclick = function() {
+                socket.emit('message', 'play');
+                if(sound.paused)
+                    sound.play();
+            };
+
+            socket.on('play', function(msg) {
+                if(msg === 'play') {
+                    if(sound.paused)
+                        sound.play();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
