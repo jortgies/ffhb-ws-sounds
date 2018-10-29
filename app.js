@@ -19,6 +19,7 @@ io.on('connect', (socket) => {
 
     socket.on('disconnect', () => {
         --connectedCount;
+        io.sockets.emit('connectedCount', connectedCount);
         console.log('user disconnected');
     })
 });

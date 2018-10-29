@@ -47,7 +47,6 @@
             });
 
             socket.on('connectedCount', (count) => {
-                console.log(count);
                 let countSpan = document.getElementsByClassName('connectedCount');
                 countSpan[0].innerHTML = count;
                 let textSpan = document.getElementsByClassName('connectedText');
