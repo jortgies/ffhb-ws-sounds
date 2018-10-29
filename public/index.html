@@ -13,24 +13,35 @@
         <source src="sounds/flash.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <br>Full Audio <a href="https://www.youtube.com/watch?v=LfmrHTdXgK4">here</a>.
+    <br/>
+    <span class="connectedCount">0</span> <span class="connectedText">Users connected</span>.
+    <br/>
+    Full Audio <a href="https://www.youtube.com/watch?v=LfmrHTdXgK4">here</a>.
     <script>
         (function() {
             let socket = io();
 
             let sound = document.getElementById('sound');
             let play = document.getElementById('play');
-            play.onclick = function() {
+            play.onclick = () => {
                 socket.emit('message', 'play');
                 if(sound.paused)
                     sound.play();
             };
 
-            socket.on('play', function(msg) {
+            socket.on('play', (msg) => {
                 if(msg === 'play') {
                     if(sound.paused)
                         sound.play();
                 }
+            });
+
+            socket.on('connectedCount', (count) => {
+                console.log(count);
+                let countSpan = document.getElementsByClassName('connectedCount');
+                countSpan[0].innerHTML = count;
+                let textSpan = document.getElementsByClassName('connectedText');
+                textSpan[0].innerHTML = count === 1 ? "User connected" : "Users connected";
             });
         })();
     </script>

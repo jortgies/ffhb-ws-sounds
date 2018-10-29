@@ -1,28 +1,28 @@
-let express = require('express');
-let app = express();
-let http = require('http').Server(app);
-let io = require('socket.io')(http);
-
-/*app.get('/', function(req, res){
-    res.sendFile(__dirname+'/index.html');
-});*/
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+let connectedCount = 0;
 
 app.use(express.static('public/'));
 
-io.on('connect', function(socket) {
+io.on('connect', (socket) => {
     console.log('a user connected');
+    ++connectedCount;
     socket.emit('message', 'socket connected');
+    io.sockets.emit('connectedCount', connectedCount);
 
-    socket.on('message', function(msg) {
+    socket.on('message', (msg) => {
         console.log('someone clicked play, msg: '+msg);
         socket.broadcast.emit('play', msg);
     });
 
-    socket.on('disconnect', function() {
+    socket.on('disconnect', () => {
+        --connectedCount;
         console.log('user disconnected');
     })
 });
 
-http.listen(3001, function() {
+http.listen(3001, () => {
     console.log('listening on *:3001');
 });
