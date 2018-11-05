@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "We were drunk, flashing routers and had fun singing the Flash Gordon theme...",
   "dependencies": {
-    "express": "^4.15.2",
+    "express": "^4.16.4",
     "socket.io": "^2.1.1"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
 }
