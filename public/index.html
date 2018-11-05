@@ -5,6 +5,38 @@
     <title>FFHB Flash Soundboard</title>
     <script src="/socket.io/socket.io.js"></script>
     <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	<style>
+		* {
+			margin:0;
+			padding:0;
+			font-family: Helvetica;
+			text-align: center;
+		}
+		
+		#container {
+			margin: 0 auto;
+			max-width: 720px;
+		}
+		
+		h1 {
+			margin: 20px 0;
+			margin-top: 100px;
+			font-size: 30px;
+		}
+		
+		button {
+			width: 100%;
+			padding-top: 10px;
+			font-size: 5em;
+			background-color: #FFFFDC; /*FFF314  FF9628*/
+			border: none;
+			cursor: pointer;
+		}
+		
+		button:hover {
+			background-color: #FFF314;
+		}
+	</style>
 </head>
 <body>
 
@@ -16,17 +48,20 @@
         </svg>
     </a>
 
-    <button id="play" style="width: 200px; height: 120px; font-size: 100px;">
-        &#9889;
-    </button>
-    <audio id="sound">
-        <source src="sounds/flash.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <br/>
-    <span class="connectedCount">0</span> <span class="connectedText">Users connected</span>.
-    <br/>
-    Full Audio <a href="https://www.youtube.com/watch?v=LfmrHTdXgK4">here</a>.
+	<div id="container">
+		<h1><span class="connectedCount">0</span> <span class="connectedText">Users connected</span></h1>
+		<button id="play">
+			&#9889;
+		</button>
+		<audio id="sound">
+			<source src="sounds/flash.mp3" type="audio/mpeg">
+			Your browser does not support the audio element :(
+		</audio>
+		<br/>
+		<br/>
+		Full Audio on <a href="https://www.youtube.com/watch?v=LfmrHTdXgK4">YouTube</a>
+    <div>
+
     <script>
         (function() {
             let socket = io();
